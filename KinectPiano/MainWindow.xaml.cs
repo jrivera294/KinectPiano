@@ -114,8 +114,8 @@ namespace KinectPiano
                         SkeletonPoint skeletonPointR = skeleton.Joints[JointType.HandRight].Position;
                         SkeletonPoint skeletonPointL = skeleton.Joints[JointType.HandLeft].Position;
 
-                        ColorImagePoint rightHand = sensor.CoordinateMapper.MapSkeletonPointToColorPoint(skeletonPointR, ColorImageFormat.RgbResolution640x480Fps30);
-                        ColorImagePoint leftHand = sensor.CoordinateMapper.MapSkeletonPointToColorPoint(skeletonPointL, ColorImageFormat.RgbResolution640x480Fps30);
+                        ColorImagePoint rightHand = sensor.CoordinateMapper.MapSkeletonPointToColorPoint(skeletonPointR, ColorImageFormat.RgbResolution1280x960Fps12);
+                        ColorImagePoint leftHand = sensor.CoordinateMapper.MapSkeletonPointToColorPoint(skeletonPointL, ColorImageFormat.RgbResolution1280x960Fps12);
 
                         if (skeleton.Joints[JointType.HandRight].TrackingState == JointTrackingState.Tracked 
                             && skeleton.Joints[JointType.HandLeft].TrackingState == JointTrackingState.Tracked)
@@ -127,38 +127,79 @@ namespace KinectPiano
                             if (rect[0].Contains(rightHand.X, rightHand.Y)
                                 || rect[0].Contains(leftHand.X, leftHand.Y))
                             {
+                                tecla1.Fill = Brushes.MidnightBlue;
                                 Console.WriteLine("------------------ 1--------------------");
+                            }
+                            else
+                            {
+                                tecla1.Fill = Brushes.White;
                             }
                             
                             if (rect[1].Contains(rightHand.X, rightHand.Y)
                                 || rect[1].Contains(leftHand.X, leftHand.Y))
                             {
+
+                                tecla2.Fill = Brushes.MidnightBlue; 
                                 Console.WriteLine("------------------ 2 --------------------");
                             }
+                            else
+                            {
+                                tecla2.Fill = Brushes.White;
+                            }
+
                             if (rect[2].Contains(rightHand.X, rightHand.Y)
                                 || rect[2].Contains(leftHand.X, leftHand.Y))
                             {
+                                tecla3.Fill = Brushes.MidnightBlue;
                                 Console.WriteLine("------------------ 3 --------------------");
                             }
+                            else
+                            {
+                                tecla3.Fill = Brushes.White;
+                            }
+
                             if (rect[3].Contains(rightHand.X, rightHand.Y)
                                 || rect[3].Contains(leftHand.X, leftHand.Y))
                             {
+                                tecla4.Fill = Brushes.MidnightBlue;
                                 Console.WriteLine("------------------ 4 --------------------");
                             }
+                            else
+                            {
+                                tecla4.Fill = Brushes.White;
+                            }
+
                             if (rect[4].Contains(rightHand.X, rightHand.Y)
                                 || rect[4].Contains(leftHand.X, leftHand.Y))
                             {
+                                tecla5.Fill = Brushes.MidnightBlue;
                                 Console.WriteLine("------------------ 5 --------------------");
                             }
+                            else
+                            {
+                                tecla5.Fill = Brushes.White;
+                            }
+
                             if (rect[5].Contains(rightHand.X, rightHand.Y)
                                 || rect[5].Contains(leftHand.X, leftHand.Y))
                             {
+                                tecla6.Fill = Brushes.MidnightBlue;
                                 Console.WriteLine("------------------ 6 --------------------");
                             }
+                            else
+                            {
+                                tecla6.Fill = Brushes.White;
+                            }
+
                             if (rect[6].Contains(rightHand.X, rightHand.Y)
                                 || rect[6].Contains(leftHand.X, leftHand.Y))
                             {
+                                tecla7.Fill = Brushes.MidnightBlue;
                                 Console.WriteLine("------------------ 7 --------------------");
+                            }
+                            else
+                            {
+                                tecla7.Fill = Brushes.White;
                             }
                         }
                     }
