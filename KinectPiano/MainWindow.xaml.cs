@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Kinect;
 using System.Diagnostics;
+using System.Media;
 
 namespace KinectPiano
 {
@@ -27,10 +28,18 @@ namespace KinectPiano
         private WriteableBitmap colorBitmap;
         private Skeleton[] skeletonData;
         private Rect[] rect;
+        private Boolean[] teclasFlag = new Boolean[7];
+        SoundPlayer player = new SoundPlayer();
+
 
         public MainWindow()
         {
             InitializeComponent();
+
+
+            player.SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\1.wav";
+            player.Load();
+
             Loaded += new RoutedEventHandler(MainWindow_Loaded);
             Closed += new EventHandler(MainWindow_Closed);
         }
@@ -101,7 +110,6 @@ namespace KinectPiano
             {
                 if (skeletonFrame != null && this.skeletonData != null) // check that a frame is available
                 {
-                    
                     skeletonFrame.CopySkeletonDataTo(this.skeletonData); // get the skeletal information in this frame
                     foreach (Skeleton skeleton in skeletonData)
                     {
@@ -114,8 +122,8 @@ namespace KinectPiano
                         SkeletonPoint skeletonPointR = skeleton.Joints[JointType.HandRight].Position;
                         SkeletonPoint skeletonPointL = skeleton.Joints[JointType.HandLeft].Position;
 
-                        ColorImagePoint rightHand = sensor.CoordinateMapper.MapSkeletonPointToColorPoint(skeletonPointR, ColorImageFormat.RgbResolution1280x960Fps12);
-                        ColorImagePoint leftHand = sensor.CoordinateMapper.MapSkeletonPointToColorPoint(skeletonPointL, ColorImageFormat.RgbResolution1280x960Fps12);
+                        ColorImagePoint rightHand = sensor.CoordinateMapper.MapSkeletonPointToColorPoint(skeletonPointR, ColorImageFormat.RgbResolution640x480Fps30);
+                        ColorImagePoint leftHand = sensor.CoordinateMapper.MapSkeletonPointToColorPoint(skeletonPointL, ColorImageFormat.RgbResolution640x480Fps30);
 
                         if (skeleton.Joints[JointType.HandRight].TrackingState == JointTrackingState.Tracked 
                             && skeleton.Joints[JointType.HandLeft].TrackingState == JointTrackingState.Tracked)
@@ -129,10 +137,12 @@ namespace KinectPiano
                             {
                                 tecla1.Fill = Brushes.MidnightBlue;
                                 Console.WriteLine("------------------ 1--------------------");
+                                player.Play();
                             }
                             else
                             {
                                 tecla1.Fill = Brushes.White;
+                                //player.Stop();
                             }
                             
                             if (rect[1].Contains(rightHand.X, rightHand.Y)
