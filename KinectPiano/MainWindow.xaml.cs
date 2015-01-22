@@ -29,16 +29,35 @@ namespace KinectPiano
         private Skeleton[] skeletonData;
         private Rect[] rect;
         private Boolean[] teclasFlag = new Boolean[7];
-        SoundPlayer player = new SoundPlayer();
+        private SoundPlayer[] player = new SoundPlayer[7];
 
 
         public MainWindow()
         {
             InitializeComponent();
 
+            player[0] = new SoundPlayer();
+            player[0].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\C4.wav";
+            player[1] = new SoundPlayer();
+            player[1].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\D4.wav";
+            player[2] = new SoundPlayer();
+            player[2].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\E4.wav";
+            player[3] = new SoundPlayer();
+            player[3].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\F4.wav";
+            player[4] = new SoundPlayer();
+            player[4].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\G4.wav";
+            player[5] = new SoundPlayer();
+            player[5].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\A4.wav";
+            player[6] = new SoundPlayer();
+            player[6].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\B4.wav";
 
-            player.SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\1.wav";
-            player.Load();
+            player[0].Load();
+            player[1].Load();
+            player[2].Load();
+            player[3].Load();
+            player[4].Load();
+            player[5].Load();
+            player[6].Load();
 
             Loaded += new RoutedEventHandler(MainWindow_Loaded);
             Closed += new EventHandler(MainWindow_Closed);
@@ -137,11 +156,16 @@ namespace KinectPiano
                             {
                                 tecla1.Fill = Brushes.MidnightBlue;
                                 Console.WriteLine("------------------ 1--------------------");
-                                player.Play();
+                                if (!teclasFlag[0])
+                                {
+                                    teclasFlag[0] = true;
+                                    player[0].Play();
+                                }
                             }
                             else
                             {
                                 tecla1.Fill = Brushes.White;
+                                teclasFlag[0] = false;
                                 //player.Stop();
                             }
                             
@@ -149,56 +173,86 @@ namespace KinectPiano
                                 || rect[1].Contains(leftHand.X, leftHand.Y))
                             {
 
-                                tecla2.Fill = Brushes.MidnightBlue; 
+                                tecla2.Fill = Brushes.DeepPink; 
                                 Console.WriteLine("------------------ 2 --------------------");
+                                if (!teclasFlag[1])
+                                {
+                                    teclasFlag[1] = true;
+                                    player[1].Play();
+                                }
                             }
                             else
                             {
                                 tecla2.Fill = Brushes.White;
+                                teclasFlag[1] = false;
                             }
 
                             if (rect[2].Contains(rightHand.X, rightHand.Y)
                                 || rect[2].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla3.Fill = Brushes.MidnightBlue;
+                                tecla3.Fill = Brushes.DarkRed;
                                 Console.WriteLine("------------------ 3 --------------------");
+                                if (!teclasFlag[2])
+                                {
+                                    teclasFlag[2] = true;
+                                    player[2].Play();
+                                }
                             }
                             else
                             {
                                 tecla3.Fill = Brushes.White;
+                                teclasFlag[2] = false;
                             }
 
                             if (rect[3].Contains(rightHand.X, rightHand.Y)
                                 || rect[3].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla4.Fill = Brushes.MidnightBlue;
+                                tecla4.Fill = Brushes.LightGoldenrodYellow;
                                 Console.WriteLine("------------------ 4 --------------------");
+                                if (!teclasFlag[3])
+                                {
+                                    teclasFlag[3] = true;
+                                    player[3].Play();
+                                }
                             }
                             else
                             {
                                 tecla4.Fill = Brushes.White;
+                                teclasFlag[3] = false;
                             }
 
                             if (rect[4].Contains(rightHand.X, rightHand.Y)
                                 || rect[4].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla5.Fill = Brushes.MidnightBlue;
+                                tecla5.Fill = Brushes.DarkGreen;
                                 Console.WriteLine("------------------ 5 --------------------");
+                                if (!teclasFlag[4])
+                                {
+                                    teclasFlag[4] = true;
+                                    player[4].Play();
+                                }
                             }
                             else
                             {
                                 tecla5.Fill = Brushes.White;
+                                teclasFlag[4] = false;
                             }
 
                             if (rect[5].Contains(rightHand.X, rightHand.Y)
                                 || rect[5].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla6.Fill = Brushes.MidnightBlue;
+                                tecla6.Fill = Brushes.DarkCyan;
                                 Console.WriteLine("------------------ 6 --------------------");
+                                if (!teclasFlag[5])
+                                {
+                                    teclasFlag[5] = true;
+                                    player[5].Play();
+                                }
                             }
                             else
                             {
                                 tecla6.Fill = Brushes.White;
+                                teclasFlag[5] = false;
                             }
 
                             if (rect[6].Contains(rightHand.X, rightHand.Y)
@@ -206,10 +260,16 @@ namespace KinectPiano
                             {
                                 tecla7.Fill = Brushes.MidnightBlue;
                                 Console.WriteLine("------------------ 7 --------------------");
+                                if (!teclasFlag[6])
+                                {
+                                    teclasFlag[6] = true;
+                                    player[6].Play();
+                                }
                             }
                             else
                             {
                                 tecla7.Fill = Brushes.White;
+                                teclasFlag[6] = false;
                             }
                         }
                     }
