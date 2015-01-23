@@ -37,19 +37,19 @@ namespace KinectPiano
             InitializeComponent();
 
             player[0] = new SoundPlayer();
-            player[0].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\C4.wav";
+            player[0].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\C4.wav";
             player[1] = new SoundPlayer();
-            player[1].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\D4.wav";
+            player[1].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\D4.wav";
             player[2] = new SoundPlayer();
-            player[2].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\E4.wav";
+            player[2].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\E4.wav";
             player[3] = new SoundPlayer();
-            player[3].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\F4.wav";
+            player[3].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\F4.wav";
             player[4] = new SoundPlayer();
-            player[4].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\G4.wav";
+            player[4].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\G4.wav";
             player[5] = new SoundPlayer();
-            player[5].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\A4.wav";
+            player[5].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\A4.wav";
             player[6] = new SoundPlayer();
-            player[6].SoundLocation = @"C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\B4.wav";
+            player[6].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\B4.wav";
 
             player[0].Load();
             player[1].Load();
@@ -154,7 +154,7 @@ namespace KinectPiano
                             if (rect[0].Contains(rightHand.X, rightHand.Y)
                                 || rect[0].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla1.Fill = Brushes.MidnightBlue;
+                                tecla1.Fill = Brushes.Blue;
                                 Console.WriteLine("------------------ 1--------------------");
                                 if (!teclasFlag[0])
                                 {
@@ -164,7 +164,7 @@ namespace KinectPiano
                             }
                             else
                             {
-                                tecla1.Fill = Brushes.White;
+                                tecla1.Fill = Brushes.MidnightBlue;
                                 teclasFlag[0] = false;
                                 //player.Stop();
                             }
@@ -173,7 +173,7 @@ namespace KinectPiano
                                 || rect[1].Contains(leftHand.X, leftHand.Y))
                             {
 
-                                tecla2.Fill = Brushes.DeepPink; 
+                                tecla2.Fill = Brushes.Pink; 
                                 Console.WriteLine("------------------ 2 --------------------");
                                 if (!teclasFlag[1])
                                 {
@@ -183,14 +183,14 @@ namespace KinectPiano
                             }
                             else
                             {
-                                tecla2.Fill = Brushes.White;
+                                tecla2.Fill = Brushes.DeepPink;
                                 teclasFlag[1] = false;
                             }
 
                             if (rect[2].Contains(rightHand.X, rightHand.Y)
                                 || rect[2].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla3.Fill = Brushes.DarkRed;
+                                tecla3.Fill = Brushes.Red;
                                 Console.WriteLine("------------------ 3 --------------------");
                                 if (!teclasFlag[2])
                                 {
@@ -200,14 +200,14 @@ namespace KinectPiano
                             }
                             else
                             {
-                                tecla3.Fill = Brushes.White;
+                                tecla3.Fill = Brushes.DarkRed;
                                 teclasFlag[2] = false;
                             }
 
                             if (rect[3].Contains(rightHand.X, rightHand.Y)
                                 || rect[3].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla4.Fill = Brushes.LightGoldenrodYellow;
+                                tecla4.Fill = Brushes.Yellow;
                                 Console.WriteLine("------------------ 4 --------------------");
                                 if (!teclasFlag[3])
                                 {
@@ -217,14 +217,14 @@ namespace KinectPiano
                             }
                             else
                             {
-                                tecla4.Fill = Brushes.White;
+                                tecla4.Fill = Brushes.YellowGreen;
                                 teclasFlag[3] = false;
                             }
 
                             if (rect[4].Contains(rightHand.X, rightHand.Y)
                                 || rect[4].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla5.Fill = Brushes.DarkGreen;
+                                tecla5.Fill = Brushes.Green;
                                 Console.WriteLine("------------------ 5 --------------------");
                                 if (!teclasFlag[4])
                                 {
@@ -234,14 +234,14 @@ namespace KinectPiano
                             }
                             else
                             {
-                                tecla5.Fill = Brushes.White;
+                                tecla5.Fill = Brushes.DarkGreen;
                                 teclasFlag[4] = false;
                             }
 
                             if (rect[5].Contains(rightHand.X, rightHand.Y)
                                 || rect[5].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla6.Fill = Brushes.DarkCyan;
+                                tecla6.Fill = Brushes.Cyan;
                                 Console.WriteLine("------------------ 6 --------------------");
                                 if (!teclasFlag[5])
                                 {
@@ -251,14 +251,14 @@ namespace KinectPiano
                             }
                             else
                             {
-                                tecla6.Fill = Brushes.White;
+                                tecla6.Fill = Brushes.DarkCyan;
                                 teclasFlag[5] = false;
                             }
 
                             if (rect[6].Contains(rightHand.X, rightHand.Y)
                                 || rect[6].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla7.Fill = Brushes.MidnightBlue;
+                                tecla7.Fill = Brushes.WhiteSmoke;
                                 Console.WriteLine("------------------ 7 --------------------");
                                 if (!teclasFlag[6])
                                 {
