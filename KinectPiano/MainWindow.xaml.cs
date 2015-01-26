@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Microsoft.Kinect;
 using System.Diagnostics;
 using System.Media;
+using System.Windows.Forms;
 
 namespace KinectPiano
 {
@@ -37,19 +38,19 @@ namespace KinectPiano
             InitializeComponent();
 
             player[0] = new SoundPlayer();
-            player[0].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\C4.wav";
+            player[0].SoundLocation = @".\sounds\C4.wav";
             player[1] = new SoundPlayer();
-            player[1].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\D4.wav";
+            player[1].SoundLocation = @".\sounds\D4.wav";
             player[2] = new SoundPlayer();
-            player[2].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\E4.wav";
+            player[2].SoundLocation = @".\sounds\E4.wav";
             player[3] = new SoundPlayer();
-            player[3].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\F4.wav";
+            player[3].SoundLocation = @".\sounds\F4.wav";
             player[4] = new SoundPlayer();
-            player[4].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\G4.wav";
+            player[4].SoundLocation = @".\sounds\G4.wav";
             player[5] = new SoundPlayer();
-            player[5].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\A4.wav";
+            player[5].SoundLocation = @".\sounds\A4.wav";
             player[6] = new SoundPlayer();
-            player[6].SoundLocation = @"C:\Users\Jose Gabriel\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\sounds\B4.wav";
+            player[6].SoundLocation = @".\sounds\B4.wav";
 
             player[0].Load();
             player[1].Load();
@@ -90,20 +91,15 @@ namespace KinectPiano
                 this.sensor.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
                 this.sensor.ColorFrameReady += this.SensorColorFrameReady;
 
-                //Habilitar y configurar el stream de datos de profundidad
-                //this.sensor.DepthStream.Enable(DepthImageFormat.Resolution640x480Fps30);
-
-                //Habilitar y configurar el stream de la cámara infraroja
-                //this.sensor.ColorStream.Enable(ColorImageFormat.InfraredResolution640x480Fps30);
-
                 //Habilitar y configurar el stream del skeleton
                 this.sensor.SkeletonStream.Enable();
                 // Allocate ST data
                 skeletonData = new Skeleton[sensor.SkeletonStream.FrameSkeletonArrayLength];
-                // Get Ready for Skeleton Ready Events
+
+                // Capturar los eventos del skeleton
                 sensor.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(kinect_SkeletonFrameReady);
 
-                //Obtener rectángulos
+                //Obtener rectángulos de la vista
                 rect = new Rect[7];
                 rect[0] = new Rect(Canvas.GetLeft(tecla1), Canvas.GetTop(tecla1), tecla1.Width, tecla1.Height);
                 rect[1] = new Rect(Canvas.GetLeft(tecla2), Canvas.GetTop(tecla2), tecla2.Width, tecla2.Height);
@@ -119,7 +115,9 @@ namespace KinectPiano
             }
             if (null == this.sensor)
             {
-                //Handle failed connection
+                System.Windows.Forms.MessageBox.Show("No se ha detectado el controlador Kinect", "KinectPiano: Error",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+                this.Close();
             }
         }
 
@@ -132,12 +130,6 @@ namespace KinectPiano
                     skeletonFrame.CopySkeletonDataTo(this.skeletonData); // get the skeletal information in this frame
                     foreach (Skeleton skeleton in skeletonData)
                     {
-                        // Get RightHand
-                        //Joint rightHand = skeleton.Joints[JointType.HandRight];
-                        // Get LeftHand
-                        //Joint leftHand = skeleton.Joints[JointType.HandLeft];
-
-                        // 3D coordinates in meters
                         SkeletonPoint skeletonPointR = skeleton.Joints[JointType.HandRight].Position;
                         SkeletonPoint skeletonPointL = skeleton.Joints[JointType.HandLeft].Position;
 
@@ -150,14 +142,13 @@ namespace KinectPiano
                             //Console.WriteLine("Right hand: " + rightHand.Position.X + ", " + rightHand.Position.Y + ", " + rightHand.Position.Z);
                             Console.WriteLine("Left hand: " + leftHand.X + ", " + leftHand.Y);
 
-
                             if (rect[0].Contains(rightHand.X, rightHand.Y)
                                 || rect[0].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla1.Fill = Brushes.Blue;
-                                Console.WriteLine("------------------ 1--------------------");
+                                Console.WriteLine("------------------ Tecla 1 --------------------");
                                 if (!teclasFlag[0])
                                 {
+                                    tecla1.Fill = Brushes.Blue;
                                     teclasFlag[0] = true;
                                     player[0].Play();
                                 }
@@ -166,17 +157,15 @@ namespace KinectPiano
                             {
                                 tecla1.Fill = Brushes.MidnightBlue;
                                 teclasFlag[0] = false;
-                                //player.Stop();
                             }
                             
                             if (rect[1].Contains(rightHand.X, rightHand.Y)
                                 || rect[1].Contains(leftHand.X, leftHand.Y))
                             {
-
-                                tecla2.Fill = Brushes.Pink; 
-                                Console.WriteLine("------------------ 2 --------------------");
+                                Console.WriteLine("------------------ Tecla 2 --------------------");
                                 if (!teclasFlag[1])
                                 {
+                                    tecla2.Fill = Brushes.Pink;
                                     teclasFlag[1] = true;
                                     player[1].Play();
                                 }
@@ -190,10 +179,10 @@ namespace KinectPiano
                             if (rect[2].Contains(rightHand.X, rightHand.Y)
                                 || rect[2].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla3.Fill = Brushes.Red;
-                                Console.WriteLine("------------------ 3 --------------------");
+                                Console.WriteLine("------------------ Tecla 3 --------------------");
                                 if (!teclasFlag[2])
                                 {
+                                    tecla3.Fill = Brushes.Red;
                                     teclasFlag[2] = true;
                                     player[2].Play();
                                 }
@@ -207,10 +196,10 @@ namespace KinectPiano
                             if (rect[3].Contains(rightHand.X, rightHand.Y)
                                 || rect[3].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla4.Fill = Brushes.Yellow;
-                                Console.WriteLine("------------------ 4 --------------------");
+                                Console.WriteLine("------------------ Tecla 4 --------------------");
                                 if (!teclasFlag[3])
                                 {
+                                    tecla4.Fill = Brushes.Yellow;
                                     teclasFlag[3] = true;
                                     player[3].Play();
                                 }
@@ -224,10 +213,10 @@ namespace KinectPiano
                             if (rect[4].Contains(rightHand.X, rightHand.Y)
                                 || rect[4].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla5.Fill = Brushes.Green;
-                                Console.WriteLine("------------------ 5 --------------------");
+                                Console.WriteLine("------------------ Tecla 5 --------------------");
                                 if (!teclasFlag[4])
                                 {
+                                    tecla5.Fill = Brushes.Green;
                                     teclasFlag[4] = true;
                                     player[4].Play();
                                 }
@@ -241,10 +230,10 @@ namespace KinectPiano
                             if (rect[5].Contains(rightHand.X, rightHand.Y)
                                 || rect[5].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla6.Fill = Brushes.Cyan;
-                                Console.WriteLine("------------------ 6 --------------------");
+                                Console.WriteLine("------------------ Tecla 6 --------------------");
                                 if (!teclasFlag[5])
                                 {
+                                    tecla6.Fill = Brushes.Cyan;
                                     teclasFlag[5] = true;
                                     player[5].Play();
                                 }
@@ -258,17 +247,17 @@ namespace KinectPiano
                             if (rect[6].Contains(rightHand.X, rightHand.Y)
                                 || rect[6].Contains(leftHand.X, leftHand.Y))
                             {
-                                tecla7.Fill = Brushes.WhiteSmoke;
-                                Console.WriteLine("------------------ 7 --------------------");
+                                Console.WriteLine("------------------ Tecla 7 --------------------");
                                 if (!teclasFlag[6])
                                 {
+                                    tecla7.Fill = Brushes.Salmon;
                                     teclasFlag[6] = true;
                                     player[6].Play();
                                 }
                             }
                             else
                             {
-                                tecla7.Fill = Brushes.White;
+                                tecla7.Fill = Brushes.SandyBrown;
                                 teclasFlag[6] = false;
                             }
                         }
@@ -291,7 +280,7 @@ namespace KinectPiano
                 if (colorFrame != null)
                 {
                     
-                    // Write the pixel data into our bitmap
+                    // Dibujar los píxeles obtenidos en la cámara de color
                     this.colorBitmap.WritePixels(
                     new Int32Rect(0, 0, this.colorBitmap.PixelWidth, this.colorBitmap.PixelHeight),
                     this.colorPixels,
@@ -299,51 +288,8 @@ namespace KinectPiano
                     0);
 
                     this.ColorImage.Source = this.colorBitmap;
-                    //this.SkeletalImage
                 }
             }
         }
-
-
-        /*
-        private void SensorSkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
-        {
-            Skeleton[] skeletons = new Skeleton[0];
-
-            using (SkeletonFrame skeletonFrame = e.OpenSkeletonFrame())
-            {
-                if (skeletonFrame != null)
-                {
-                    skeletons = new Skeleton[skeletonFrame.SkeletonArrayLength];
-                    skeletonFrame.CopySkeletonDataTo(skeletons);
-                }
-                if (skeletons.Length != 0)
-                {
-                    foreach (Skeleton skel in skeletons)
-                    {
-                        if (skel.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            this.tracked(skel);
-                        }
-                    }
-                }
-            }
-        }
-
-        public void tracked(Skeleton skeleton)
-        {
-            Joint jHandRight = skeleton.Joints[JointType.HandRight];
-            Joint jHipCenter = skeleton.Joints[JointType.HipCenter];
-            if ((jHipCenter.Position.Z - jHandRight.Position.Z) > 0.4)
-            {
-                //Consider hand raised in front of them
-                System.Diagnostics.Debug.WriteLine("Hand: Raised");
-            }
-            else
-            {
-                //Hand is lowered by the users side
-                System.Diagnostics.Debug.WriteLine("Hand: Lowered");
-            }
-        }*/
     }
 }

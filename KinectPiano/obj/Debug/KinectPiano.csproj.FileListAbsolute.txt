@@ -12,11 +12,8 @@ c:\users\jose gabriel\documents\visual studio 2013\Projects\KinectPiano\KinectPi
 c:\users\jose gabriel\documents\visual studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\KinectPiano.exe
 c:\users\jose gabriel\documents\visual studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\KinectPiano.pdb
 C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\bin\Debug\KinectPiano.exe.config
-C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\KinectPiano.exe
-C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\KinectPiano.pdb
 C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\bin\Debug\KinectPiano.exe
 C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\bin\Debug\KinectPiano.pdb
-C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\KinectPiano.csprojResolveAssemblyReference.cache
 C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\MainWindow.baml
 C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\MainWindow.g.cs
 C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\App.g.cs
@@ -24,3 +21,6 @@ C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\K
 C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\KinectPiano.g.resources
 C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\KinectPiano.Properties.Resources.resources
 C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\KinectPiano.csproj.GenerateResource.Cache
+C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\KinectPiano.exe
+C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\KinectPiano.pdb
+C:\Users\Jose Gabriel Rivera\Documents\Visual Studio 2013\Projects\KinectPiano\KinectPiano\obj\Debug\KinectPiano.csprojResolveAssemblyReference.cache
